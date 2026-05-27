@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Choice Mayorista - Catálogo de zapatillas en curvas. Precios mayoristas directo de fábrica.">
+  <title>Choice Mayorista · Catálogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo">
+        <span class="logo-choice">CHOICE</span>
+        <span class="logo-mayorista">MAYORISTA</span>
+      </a>
+
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="8.5" cy="8.5" r="5.5"/><path d="m15 15 3 3" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar zapatillas, marcas…" autocomplete="off">
+        <button class="search-clear" id="clearSearch" hidden aria-label="Limpiar búsqueda">✕</button>
+      </div>
+
+      <div class="header-actions">
+        <button class="cart-btn" id="cartBtn" aria-label="Ver pedido">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="cart-count" id="cartCount" hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Filters bar ─────────────────────────────────────────────────────── -->
+  <div class="filters-bar">
+    <div class="filters-inner">
+      <div class="filters-group" id="brandFilters">
+        <button class="filter-pill active" data-brand="all">Todas</button>
+        <button class="filter-pill" data-brand="Nike">Nike</button>
+        <button class="filter-pill" data-brand="Adidas">Adidas</button>
+        <button class="filter-pill" data-brand="Puma">Puma</button>
+        <button class="filter-pill" data-brand="New Balance">New Balance</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filters-group" id="subcategoryFilters">
+        <button class="filter-pill active" data-sub="all">Todas</button>
+        <button class="filter-pill" data-sub="Urbana">Urbana</button>
+        <button class="filter-pill" data-sub="Deportiva">Deportiva</button>
+      </div>
+      <div class="filter-divider"></div>
+      <select class="sort-select" id="sortSelect" aria-label="Ordenar">
+        <option value="newest">Más recientes</option>
+        <option value="featured">Destacados</option>
+        <option value="price-asc">Precio ↑</option>
+        <option value="price-desc">Precio ↓</option>
+        <option value="name-asc">Nombre A–Z</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ── WhatsApp CTA banner ─────────────────────────────────────────────── -->
+  <div class="wa-banner">
+    <p>¿Tenés dudas o querés asesoramiento personalizado?</p>
+    <a class="btn-wa" href="#" data-wa target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.525 5.837L0 24l6.335-1.513A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-4.964-1.347l-.357-.212-3.757.897.941-3.657-.232-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      Consultanos por WhatsApp
+    </a>
+  </div>
+
+  <!-- ── Main catalog ─────────────────────────────────────────────────────── -->
+  <main class="main">
+    <div class="container">
+      <div class="catalog-info">
+        <span class="results-count" id="resultsInfo"></span>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-icon">🔍</div>
+        <p>No encontramos zapatillas con ese criterio.<br>Probá con otra búsqueda o filtro.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── WhatsApp CTA footer banner ─────────────────────────────────────── -->
+  <div class="wa-banner" style="margin-top: 0;">
+    <p>¿Listo para hacer tu pedido? También podés escribirnos directamente.</p>
+    <a class="btn-wa" href="#" data-wa target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.525 5.837L0 24l6.335-1.513A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-4.964-1.347l-.357-.212-3.757.897.941-3.657-.232-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      Hablar por WhatsApp
+    </a>
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <p><strong>Choice Mayorista</strong> · Curvas de zapatillas directo de fábrica</p>
+      <a class="footer-wa" href="#" data-wa target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.525 5.837L0 24l6.335-1.513A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-4.964-1.347l-.357-.212-3.757.897.941-3.657-.232-.374A9.818 9.818 0 1112 21.818z"/></svg>
+        Escribinos por WhatsApp
+      </a>
+      <p style="margin-top: 16px; opacity: .4; font-size: .75rem;">© 2025 Choice Mayorista · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- ── Cart sidebar ────────────────────────────────────────────────────── -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Tu pedido">
+    <div class="cart-header">
+      <h2>Tu Pedido</h2>
+      <button class="close-cart" id="closeCart" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total estimado</span>
+        <span class="cart-total-amount" id="cartTotal">$0</span>
+      </div>
+      <button class="btn-send-order" id="sendOrderBtn" disabled>
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.525 5.837L0 24l6.335-1.513A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-4.964-1.347l-.357-.212-3.757.897.941-3.657-.232-.374A9.818 9.818 0 1112 21.818z"/></svg>
+        Enviar pedido por WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── Order modal ─────────────────────────────────────────────────────── -->
+  <div class="modal-bg" id="orderModal" style="display:none">
+    <div class="modal">
+      <h3>Completá tus datos</h3>
+      <p>Te enviamos el resumen del pedido por WhatsApp para confirmar.</p>
+      <div class="form-group">
+        <label class="form-label" for="customerName">Nombre *</label>
+        <input type="text" class="form-input" id="customerName" placeholder="Tu nombre completo" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="customerPhone">Teléfono (opcional)</label>
+        <input type="tel" class="form-input" id="customerPhone" placeholder="Ej: +54 9 11 0000-0000" autocomplete="tel">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="orderNotes">Observaciones (opcional)</label>
+        <textarea class="form-textarea" id="orderNotes" placeholder="¿Alguna consulta adicional?"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelOrder">Cancelar</button>
+        <button class="btn-primary-wa" id="confirmOrder">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.525 5.837L0 24l6.335-1.513A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-4.964-1.347l-.357-.212-3.757.897.941-3.657-.232-.374A9.818 9.818 0 1112 21.818z"/></svg>
+          Confirmar y enviar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WhatsApp float ──────────────────────────────────────────────────── -->
+  <a class="wa-float" href="#" data-wa target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.525 5.837L0 24l6.335-1.513A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-4.964-1.347l-.357-.212-3.757.897.941-3.657-.232-.374A9.818 9.818 0 1112 21.818z"/></svg>
+  </a>
+
+  <script src="js/store.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>
